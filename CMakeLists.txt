@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(HEADERS ${PROJECT_SOURCE_DIR}/include/stack0.0.1.hpp)
 set(HEADERS ${PROJECT_SOURCE_DIR}/include/catch.hpp)
-
+add_subdirectory(tests)
+add_subdirectory(example)
 option(BUILD_EXAMPLES "Build examples" OFF)
 
 add_library(main STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp)
