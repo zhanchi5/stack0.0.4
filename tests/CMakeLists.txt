@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.0)
 
-set(TESTS_FOR_PROJECT stack0.0.1)
+set(TESTS_FOR_PROJECT stack0.0.2)
 
 project(${TESTS_FOR_PROJECT}_tests)
 
