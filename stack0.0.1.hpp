@@ -1,16 +1,19 @@
 #include <iostream>
+#include <algorithm>
 
 template <typename T>
 class stack
 {
 public:
 	stack();
-	~stack();
 	size_t count() const;
+	size_t array_size() const;
+	T * operator[](unsigned int index) const;
 	void push(T const &);
 	T pop();
 	T last()const;
 	void print();
+	void swap();
 private:
 	T * array_;
 	size_t array_size_;
@@ -25,15 +28,19 @@ stack<T>::stack()
 	count_ = 0;
 }
 template <typename T>
-stack<T>::~stack()
+size_t stack<T>::array_size() const
 {
-	delete[] array_;
-	array_size_ = count_ = 0;
+	return array_size_;
 }
 template <typename T>
 size_t stack<T>::count() const
 {
 	return count_;
+}
+template <typename T>
+T * stack<T>::operator[](unsigned int index) const
+{
+	return array_[index];
 }
 template <typename T>
 void stack<T>::push(T const & value)
@@ -46,11 +53,7 @@ void stack<T>::push(T const & value)
 	else if (array_size_ == count_)
 	{
 		array_size_ *= 2;
-		T * new_array = new T[array_size_]();
-		for (unsigned int i = 0; i < count_; ++i)
-			new_array[i] = array_[i];
-		delete[] array_;
-		array_ = new_array;
+		swap();
 	}
 	array_[count_++] = value;
 }
@@ -63,12 +66,8 @@ T stack<T>::pop()
 	{
 		if (count_ - 1 == array_size_ / 2)
 			array_size_ /= 2;
-		T * new_array = new T[array_size_]();
 		T value = array_[--count_];
-		for (unsigned int i = 0; i < count_; ++i)
-			new_array[i] = array_[i];
-		delete[] array_;
-		array_ = new_array;
+		swap();
 		return value;
 	}
 }
@@ -85,4 +84,12 @@ void stack<T>::print()
 	for (unsigned int i = 0; i < count_; ++i)
 		std::cout << array_[i] << " ";
 	std::cout << std::endl;
+}
+template <typename T>
+void stack<T>::swap()
+{
+	T * new_array = new T[array_size_]();
+	std::copy(array_, array_ + count_, stdext::checked_array_iterator<T*>(new_array, count_));
+	delete[] array_;
+	array_ = new_array;
 }
