@@ -1,7 +1,5 @@
 #include <catch.hpp>
-
-#include "stack0.0.1.hpp"
-
+#include <stack0.0.1.hpp>
 TEST_CASE("push") 
 {
     stack<int> stack_;
