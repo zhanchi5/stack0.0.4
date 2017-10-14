@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.0)
 
 project (stack0.0.1_example)
 set(SOURCES main.cpp)
