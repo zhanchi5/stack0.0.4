@@ -3,6 +3,8 @@ project(stack)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(HEADERS ${PROJECT_SOURCE_DIR}/include/stack0.0.1.hpp)
+set(HEADERS ${PROJECT_SOURCE_DIR}/include/catch.hpp)
 
 option(BUILD_EXAMPLES "Build examples" OFF)
 
