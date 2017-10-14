@@ -1,0 +1,16 @@
+language: cpp
+
+notifications:
+  email: false
+  
+script:
+- cmake -H. -B_builds -DBUILD_EXAMPLES=ON
+- cmake --build _builds
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+- cmake-data
