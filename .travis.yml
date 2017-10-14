@@ -3,14 +3,25 @@ language: cpp
 notifications:
   email: false
   
+os:
+- osx
+matrix:
+  include:
+    - os: linux
+      env: COMPILER_NAME=gcc CXX=g++-5 CC=gcc-5
+      addons:
+        apt:
+          packages:
+            - cmake
+            - g++-5
+          - cmake-data
+          sources: &sources
+            - george-edison55-precise-backports
+            - llvm-toolchain-precise
+            - ubuntu-toolchain-r-test
 script:
 - cmake -H. -B_builds -DBUILD_EXAMPLES=ON
 - cmake --build _builds
-
-addons:
-  apt:
-    sources:
-      - george-edison55-precise-backports
-    packages:
-      - cmake
-- cmake-data
+- mkdir build
+- cd build
+- cmake .. && make
