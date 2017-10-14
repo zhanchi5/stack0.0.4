@@ -16,6 +16,5 @@ matrix:
             - llvm-toolchain-precise
             - ubuntu-toolchain-r-test
 script:
-- mkdir build
-- cd build
-- cmake .. && make
+- cmake -H. -B_builds -DBUILD_EXAMPLES=ON
+- cmake --build _builds
