@@ -1,50 +1,73 @@
-#include "stack0.0.1.hpp"
-#include <stdlib.h>
+#include <codecvt>
+#include <iostream>
 #include <string>
+#include <stack0.0.1.hpp>
 
 int main()
 {
-	stack<int> stack_;
-	std::string str;
-	unsigned int i = 0;
-
-	std::cout << "Add an element: +<Element>\nShow the last element: ?\nPop the last element: -\nShow the stack: =\n\n";
-	std::getline(std::cin, str);
-
-	while (str[i] != '\0')
+	stack<int> st;
+	char ch = ' ';
+	while (std::cin >> ch)
 	{
-		switch (str[i])
+		int val = 0;
+		switch (ch)
 		{
-		case '+':
-		{
-					if (str[i + 1] == ' ' || str[i + 1] == '\0')
-						std::cout << "An error has occurred while reading arguments\n";
-					else
-					{
-						stack_.push(stoi(str.substr(i + 1)));
-					}
-					break;
+
+		case'+':
+			if (!(std::cin >> val))
+			{
+				std::cin.clear();
+				std::cout << "An error has occurred while reading arguments" << std::endl; 
+				while (std::cin.get() != '\n') continue;
+			}
+			else
+				st.push(val);	
+				break;
+
+		case'-':
+			if (st.count()==0)
+			{
+				std::cout << "Stack is empty" << std::endl;
+			}
+			else 
+			{
+				std::cout << st.pop() << std::endl;
+			}
+			break;
+
+		case'=':
+			if (!st.count()) 
+			{
+				std::cout << "Stack is empty" << std::endl;
+			}
+			else 
+			{
+				st.print();
+			}
+			break;
+
+		case'?':
+			if (st.count()==0) 
+			{
+				std::cout << "Stack is empty" << std::endl;
+			}
+			else
+			{
+				val = st.pop();
+				std::cout << val << std::endl;
+				st.push(val);
+			}
+			break;
+
+		case'z':
+			std::getchar();
+			return 0;
+			break;
+
+		default:
+			std::cout << "An error has occurred while reading arguments";
 		}
-		case '?':
-		{
-					std::cout << stack_.last();
-					std::cout << std::endl;
-					break;
-		}
-		case '-':
-		{
-					stack_.pop();
-					break;
-		}
-		case '=':
-		{
-					stack_.print();
-					break;
-		}
-		defoult: break;
-		}
-		i++;
 	}
-  
+
 	return 0;
 }
