@@ -1,8 +1,7 @@
-language: cpp
-
+language: generic
 notifications:
   email: false
-  
+
 os:
 - osx
 matrix:
@@ -12,16 +11,11 @@ matrix:
       addons:
         apt:
           packages:
-            - cmake
             - g++-5
-          - cmake-data
           sources: &sources
-            - george-edison55-precise-backports
             - llvm-toolchain-precise
             - ubuntu-toolchain-r-test
 script:
-- cmake -H. -B_builds -DBUILD_EXAMPLES=ON
-- cmake --build _builds
 - mkdir build
 - cd build
 - cmake .. && make
