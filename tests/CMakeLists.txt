@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.0)
 
 set(TESTS_FOR_PROJECT stack0.0.1)
 
