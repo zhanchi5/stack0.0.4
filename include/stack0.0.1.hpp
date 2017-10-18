@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <utility>
 
-template <typename T> class stack
+template <typename T>
+class stack
 {
 public:
     stack();
@@ -15,10 +16,7 @@ public:
     size_t array_size() const;
     void push(T const &);
     T pop();
-
-
     std::ostream& print(std::ostream& os);
-
     friend std::ostream& operator<< (std::ostream& os, stack<T>& obj);
 
 private:
@@ -27,9 +25,6 @@ private:
     size_t count_;
 };
 
-template <typename T>
-stack<T>::stack() : count_(0), array_size_(0), array_(nullptr)
-{}
 
 template <typename T>
 size_t stack<T>::count() const
@@ -42,7 +37,7 @@ size_t stack<T>::array_size() const
 {
     return array_size_;
 }
-template<typename T>
+/*template<typename T>
 std::ostream& operator <<(std::ostream& os, stack<T> val){
     if (count_ == 0) std::cout << "Stack is empty" << std::endl;
     else
@@ -51,7 +46,7 @@ std::ostream& operator <<(std::ostream& os, stack<T> val){
     std::cout << std::endl;
     return os;
 }
-
+*/
 
 template<typename T>
 stack<T>::stack()
