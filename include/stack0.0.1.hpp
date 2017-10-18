@@ -18,7 +18,7 @@ public:
     bool empty() const noexcept;
     T top()  /*strong*/;
     void pop()  /*strong*/;
-    std::ostream& print(std::ostream& os);
+    std::ostream& print(std::ostream& os) const noexcept;
     friend std::ostream& operator<< (std::ostream& os, stack<T>& obj);
 
 private:
@@ -83,7 +83,7 @@ stack<T>& stack<T>::operator=(stack<T> const &other)
 }
 
 template <typename T>
-std::ostream& stack<T>::print(std::ostream& os) noexcept
+std::ostream& stack<T>::print(std::ostream& os) const noexcept
 {
     if (count_ == 0) {
         os << "Stack is empty! Try again!\n";
