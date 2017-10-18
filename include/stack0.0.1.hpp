@@ -11,7 +11,7 @@ public:
     ~stack();
     stack(const stack&) /*basic*/;
     stack<T>& operator=(const stack<T>& other)/*basic*/;
-    void swap(stack<T>& other);
+    void swap(stack<T>& other) noexcept;
     size_t count() const noexcept;
     size_t array_size() const;
     void push(T const &) /*basic*/;
