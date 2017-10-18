@@ -12,7 +12,7 @@ public:
     stack(const stack&) /*basic*/;
     stack<T>& operator=(const stack<T>& other)/*basic*/;
     void swap(stack<T>& other);
-    size_t count() const noexept;
+    size_t count() const noexcept;
     size_t array_size() const;
     void push(T const &) /*basic*/;
     bool empty() const noexcept;
