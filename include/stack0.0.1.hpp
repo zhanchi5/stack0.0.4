@@ -8,7 +8,7 @@ class stack
 {
 public:
     stack();
-    ~stack();
+    ~stack() noexcept;
     stack(const stack&) /*basic*/;
     stack<T>& operator=(const stack<T>& other)/*basic*/;
     void swap(stack<T>& other) noexcept;
