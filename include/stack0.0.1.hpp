@@ -146,8 +146,4 @@ bool stack<T>::empty() const noexcept
 {
 	return (count_ == 0); 
 }
-template <typename T>
-size_t stack<T>::count() const noexcept
-{
-	return count_;
-}
+
