@@ -9,4 +9,4 @@
 
 - [x] Добавить метод empty().
 
-[![Build Status](https://travis-ci.org/yanaxgrishkova/stack03.svg?branch=master)](https://travis-ci.org/zhanchi5/stack0.0.3)
+[![Build Status](https://travis-ci.org/zhanchi5/stack0.0.3.svg?branch=master)](https://travis-ci.org/zhanchi5/stack0.0.3)
