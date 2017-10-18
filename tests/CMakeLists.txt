@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.2)
+cmake_minimum_required(VERSION 3.0.0)
 project(${CMAKE_PROJECT_NAME}_test CXX)
 
 file(GLOB SOURCES *.cpp)
