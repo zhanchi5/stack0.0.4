@@ -7,7 +7,7 @@ template <typename T>
 class stack
 {
 public:
-    stack(); noexcept;
+    stack() noexcept;
     ~stack() noexcept;
     stack(const stack&) /*no safety*/;
     stack<T>& operator=(const stack<T>& other)/*no safety*/;
