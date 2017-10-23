@@ -7,10 +7,10 @@ template <typename T>
 class stack
 {
 public:
-    stack();
+    stack(); noexcept;
     ~stack() noexcept;
-    stack(const stack&) /*basic*/;
-    stack<T>& operator=(const stack<T>& other)/*basic*/;
+    stack(const stack&) /*no safety*/;
+    stack<T>& operator=(const stack<T>& other)/*no safety*/;
     void swap(stack<T>& other) noexcept;
     size_t count() const noexcept;
     size_t array_size() const;
@@ -42,7 +42,7 @@ size_t stack<T>::array_size() const
 
 
 template<typename T>
-stack<T>::stack()
+stack<T>::stack() noexcept
 {
         count_ = 0;
         array_size_ = 0;
@@ -100,7 +100,7 @@ std::ostream& stack<T>::print(std::ostream& os) const
 template <typename T>
 std::ostream& operator<< (std::ostream& os, stack<T>& obj)
 {
-    return obj.os(os);
+    return obj.print(os);
 }
 
 template <typename T>
@@ -115,7 +115,7 @@ void stack<T>::pop()
 template <typename T>
 T stack<T>::top() 
 {
-	T temp = array_[count_--];
+	T temp = array_[--count_];
 
 	return temp;
 }
@@ -139,7 +139,7 @@ void stack<T>::push(T const &val)
 
         array_ = temp;
     }
-    array_[count_++] = val;
+    array_[++count_] = val;
 }
 template <typename T>
 bool stack<T>::empty() const noexcept
