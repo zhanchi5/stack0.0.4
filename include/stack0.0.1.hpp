@@ -14,11 +14,11 @@ public:
     void swap(stack<T>& other) noexcept;
     size_t count() const noexcept;
     size_t array_size() const;
-    void push(T const &) /*basic*/;
+    void push(T const &) /*no safety*/;
     bool empty() const noexcept;
     T top()  /*strong*/;
     void pop()  /*strong*/;
-    std::ostream& print(std::ostream& os) const;
+    std::ostream& print(std::ostream& os) const /*no safety*/;
     friend std::ostream& operator<< (std::ostream& os, stack<T>& obj);
 
 private:
