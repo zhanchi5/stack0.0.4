@@ -4,29 +4,25 @@
 #include <utility>
 
 template <typename T>
-class stack
-{
+class stack{
 public:
-    stack() noexcept;
-    ~stack() noexcept;
-    stack(const stack&) /*no safety*/;
-    stack<T>& operator=(const stack<T>& other)/*no safety*/;
-    void swap(stack<T>& other) noexcept;
-    size_t count() const noexcept;
-    size_t array_size() const;
-    void push(T const &) /*no safety*/;
-    bool empty() const noexcept;
-    T top()  /*strong*/;
-    void pop()  /*strong*/;
-    std::ostream& print(std::ostream& os) const /*no safety*/;
-    friend std::ostream& operator<< (std::ostream& os, stack<T>& obj);
+    	stack() noexcept;
+        size_t count() const noexcept;
+    	void push(T const &) /* strong */;
+    	void pop()  /*strong*/;
+	T top()  /*strong*/;
+    	
 
 private:
-    T * array_;
-    size_t array_size_;
-    size_t count_;
+	void swap(stack<T>& other) noexcept;
+   	T * array_;
+    	size_t array_size_;
+    	size_t count_;
+	
 };
 
+template <typename T>
+stack<T>::stack() noexcept : count_(0), array_size_(0), array_(nullptr){}
 
 template <typename T>
 size_t stack<T>::count() const noexcept
@@ -34,34 +30,7 @@ size_t stack<T>::count() const noexcept
     return count_;
 }
 
-template <typename T>
-size_t stack<T>::array_size() const
-{
-    return array_size_;
-}
 
-
-template<typename T>
-stack<T>::stack() noexcept
-{
-        count_ = 0;
-        array_size_ = 0;
-        array_ = new T[array_size_];
-}
-
-template<typename T>
-stack<T>::~stack() noexcept
-{
-        delete[] array_;
-}
-template<typename T>
-stack<T>::stack(const stack<T>& other)
-{
-        array_size_ = other.array_size_;
-        count_ = other.count_;
-        array_ = new T[array_size_];
-        std::copy(other.array_, other.array_ + other.array_size_, array_);
-}
 
 template <typename T>
 void stack<T>::swap(stack<T>& other) noexcept
@@ -71,50 +40,19 @@ void stack<T>::swap(stack<T>& other) noexcept
     std::swap(count_, other.count_);
 }
 
+
 template <typename T>
-stack<T>& stack<T>::operator=(stack<T> const &other)
-{
-    if (this != &other)
-    {
-        stack<T> temp(other);
-        swap(temp);
-    }
-    return *this;
+void stack<T>::pop(){
+	if (count_ == 0){
+		std::cout << "Stack is empty! Try again!" << "\n";
+	}
+	else{
+		--count_;
+	}
 }
 
 template <typename T>
-std::ostream& stack<T>::print(std::ostream& os) const 
-{
-    if (count_ == 0) {
-        os << "Stack is empty! Try again!\n";
-    }
-    else {
-        for (unsigned int i = 0; i < count_; i++) {
-            os << array_[i] << "\t";
-        }
-    }
-
-    return os;
-}
-
-template <typename T>
-std::ostream& operator<< (std::ostream& os, stack<T>& obj)
-{
-    return obj.print(os);
-}
-
-template <typename T>
-void stack<T>::pop()
-{
-	if (count_ == 0)
-		std::cout << "Stack is empty! Try again!\n";
-	else
-		count_ --;
-}
-
-template <typename T>
-T stack<T>::top() 
-{
+T stack<T>::top(){
 	T temp = array_[--count_];
 
 	return temp;
@@ -122,28 +60,26 @@ T stack<T>::top()
 
 
 template <typename T>
-void stack<T>::push(T const &val)
-{
-    if (array_size_ == 0)
-    {
-        array_size_ = 1;
-        array_ = new T[array_size_];
-    }
-    else if (count_ + 1 >= array_size_)
-    {
-        array_size_ = array_size_ * 2;
-        T* temp = new T[array_size_];
-        std::copy(array_, array_ + count_, temp);
+void stack<T>::push(T const &val){
+	
+	if (array_size_ == count_){
+		
+		size_t size_ = array_size_;
+		if (size_ == 0){
+			size_ = 1;
+		}
+		else{
+			size_ = array_size_ * 2;
+		}
 
-        delete[] array_;
+		T* temp = new T[size_];
+		std::copy(array_, array_ + count_, temp);
 
-        array_ = temp;
-    }
-    array_[++count_] = val;
-}
-template <typename T>
-bool stack<T>::empty() const noexcept
-{
-	return (count_ == 0); 
+		array_size_ = size_;
+		delete[] array_;
+		array_ = temp;
+	}
+	array_[count_] = value;
+++count_;
 }
 
