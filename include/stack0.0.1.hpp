@@ -53,12 +53,13 @@ void stack<T>::pop(){
 
 template <typename T>
 T stack<T>::top(){
-	T temp = array_[--count_];
-
-	return temp;
+	if (count_ == 0){
+		throw "Stack is empty!";
+	}
+	else{
+		return array_[count_ - 1];
+	}
 }
-
-
 template <typename T>
 void stack<T>::push(T const &val){
 	
