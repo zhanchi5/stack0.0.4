@@ -17,4 +17,5 @@ private:
   size_t array_size_;
   size_t count_;
 };
+```
 [![Build Status](https://travis-ci.org/zhanchi5/stack0.0.4.svg?branch=master)](https://travis-ci.org/zhanchi5/stack0.0.4)
