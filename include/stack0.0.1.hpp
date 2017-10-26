@@ -79,7 +79,7 @@ void stack<T>::push(T const &val){
 		delete[] array_;
 		array_ = temp;
 	}
-	array_[count_] = value;
+	array_[count_] = val;
 ++count_;
 }
 
