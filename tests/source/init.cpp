@@ -26,7 +26,7 @@ TEST_CASE("top", "") {
     v2.push(17);
     v2.push(413);
     v2.push(769);
-    v2.push(12);
+    v2.push(1230);
     v2.top();
     REQUIRE(v2.count() == 4);
 }
