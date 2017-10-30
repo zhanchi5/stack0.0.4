@@ -17,7 +17,7 @@ public:
 	void push(T const &) /* strong */;
 	void pop() /* strong */;
 	T top() /* strong */;
-
+	bool empty() const noexcept;
 
 private:
 	T* array_;
@@ -46,12 +46,14 @@ stack<T>::stack(stack<T> const& copy)
 	{
 		std::copy(copy.array_, copy.array_ + count_, array_);	
 	}
-	catch( ... )
+	catch ( ... )
 	{
 		std::cerr << "Error! Try again!" << std::endl;
 		delete[] array_;
 		throw;
 	}
+	
+	
 }
 
 template <typename T>
@@ -86,7 +88,18 @@ void stack<T>::push(T const& value)
 			size = array_size_ * 2;
 
 		T* temp = new T[size];
-		std::copy(array_, array_ + count_, temp);
+		
+		try
+		{
+			std::copy(array_, array_ + count_, temp);	
+		}
+		
+		catch ( ... )
+		{
+			std::cerr << "Error! Try again!" << std::endl;
+			delete[] temp;
+			throw;
+		}
 
 		array_size_ = size;
 		delete[] array_;
@@ -121,4 +134,10 @@ T stack<T>::top()
 	{
 		return array_[count_ - 1];
 	}
+}
+
+template <typename T>
+bool stack<T>::empty() const noexcept
+{
+	return (count_ == 0); 
 }
